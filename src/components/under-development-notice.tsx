@@ -87,8 +87,8 @@ export function UnderDevelopmentNotice() {
             </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-neutral-300 sm:text-base">
-              You're viewing a work in progress, not the final portfolio.
-              I'm reorganizing the site and updating its content.
+              You&apos;re viewing a work in progress, not the final portfolio.
+              I&apos;m reorganizing the site and updating its content.
             </p>
 
             <p className="mt-3 font-mono text-xs uppercase tracking-widest text-amber-300">
