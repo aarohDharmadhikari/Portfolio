@@ -1,0 +1,101 @@
+<svg width="900" height="180" viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff">
+        <animate attributeName="stop-color"
+          values="#ffffff;#8affdf;#ffffff"
+          dur="4s"
+          repeatCount="indefinite"/>
+      </stop>
+
+      <stop offset="50%" stop-color="#9fffe5">
+        <animate attributeName="stop-color"
+          values="#9fffe5;#ffffff;#9fffe5"
+          dur="4s"
+          repeatCount="indefinite"/>
+      </stop>
+
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <clipPath id="reveal">
+      <rect x="0" y="0" width="0" height="180">
+        <animate
+          attributeName="width"
+          values="0;900;900;0"
+          keyTimes="0;0.45;0.75;1"
+          dur="5s"
+          repeatCount="indefinite"/>
+      </rect>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="180" fill="#050505"/>
+
+  <!-- Cinematic scan line -->
+  <rect
+    x="0"
+    y="0"
+    width="3"
+    height="180"
+    fill="#9fffe5"
+    opacity="0.8">
+
+    <animate
+      attributeName="x"
+      values="-10;910;-10"
+      dur="5s"
+      repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Main name -->
+  <g clip-path="url(#reveal)" filter="url(#glow)">
+
+    <text
+      x="450"
+      y="105"
+      text-anchor="middle"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="58"
+      font-weight="700"
+      letter-spacing="4"
+      fill="url(#textGradient)">
+      Aaroh Dharmadhikari
+    </text>
+
+  </g>
+
+  <!-- Subtle baseline -->
+  <line
+    x1="250"
+    y1="130"
+    x2="650"
+    y2="130"
+    stroke="#9fffe5"
+    stroke-width="1"
+    opacity="0.35">
+
+    <animate
+      attributeName="x1"
+      values="450;250;250;450"
+      dur="5s"
+      repeatCount="indefinite"/>
+
+    <animate
+      attributeName="x2"
+      values="450;650;650;450"
+      dur="5s"
+      repeatCount="indefinite"/>
+  </line>
+
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="172" viewBox="0 0 820 172" role="img" aria-labelledby="title desc">
+  <title id="title">Aaroh Dharmadhikari — engineering focus</title>
+  <desc id="desc">A refined terminal-style animation cycling through full-stack architecture, AI and machine learning systems, and interactive web experiences.</desc>
+  <defs>
+    <linearGradient id="surface" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset=".55" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="progress" x1="0" x2="1">
+      <stop stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="contentClip"><rect x="30" y="62" width="760" height="58"/></clipPath>
+  </defs>
+
+  <rect x="1" y="1" width="818" height="170" rx="14" fill="url(#surface)" stroke="#263449" stroke-width="2"/>
+  <path d="M15 45H805" stroke="#263449"/>
+  <circle cx="25" cy="23" r="5" fill="#fb7185"/>
+  <circle cx="43" cy="23" r="5" fill="#fbbf24"/>
+  <circle cx="61" cy="23" r="5" fill="#34d399"/>
+  <text x="785" y="27" text-anchor="end" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">aaroh/portfolio</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="30" y="78" fill="#64748b" font-size="15">01</text>
+    <text x="60" y="78" fill="#38bdf8" font-size="15">const</text>
+    <text x="116" y="78" fill="#e2e8f0" font-size="15">focus</text>
+    <text x="166" y="78" fill="#94a3b8" font-size="15">=</text>
+
+    <g clip-path="url(#contentClip)">
+      <g opacity="0">
+        <text x="184" y="78" fill="#a78bfa" font-size="15">"Full-Stack Architecture"</text>
+        <text x="184" y="104" fill="#94a3b8" font-size="12">scalable products · typed systems · thoughtful interfaces</text>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.27;.34" dur="18s" repeatCount="indefinite"/>
+      </g>
+      <g opacity="0">
+        <text x="184" y="78" fill="#a78bfa" font-size="15">"AI &amp; Machine Learning Systems"</text>
+        <text x="184" y="104" fill="#94a3b8" font-size="12">data-informed workflows · useful intelligence · measurable impact</text>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.27;.34" dur="18s" begin="6s" repeatCount="indefinite"/>
+      </g>
+      <g opacity="0">
+        <text x="184" y="78" fill="#a78bfa" font-size="15">"Interactive Web Experiences"</text>
+        <text x="184" y="104" fill="#94a3b8" font-size="12">motion with intent · 3D visualization · accessible UX</text>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.27;.34" dur="18s" begin="12s" repeatCount="indefinite"/>
+      </g>
+    </g>
+    <text x="30" y="104" fill="#64748b" font-size="15">02</text>
+    <text x="60" y="104" fill="#38bdf8" font-size="15">return</text>
+    <text x="125" y="104" fill="#f8fafc" font-size="15">craft</text>
+    <text x="180" y="104" fill="#94a3b8" font-size="15">(with</text>
+    <text x="232" y="104" fill="#34d399" font-size="15">intent</text>
+    <text x="294" y="104" fill="#94a3b8" font-size="15">);</text>
+  </g>
+
+  <rect x="30" y="139" width="760" height="3" rx="1.5" fill="#1e293b"/>
+  <rect x="30" y="139" width="220" height="3" rx="1.5" fill="url(#progress)" filter="url(#softGlow)">
+    <animate attributeName="x" values="30;570;30" dur="18s" repeatCount="indefinite"/>
+    <animate attributeName="width" values="220;190;220" dur="18s" repeatCount="indefinite"/>
+  </rect>
+  <g fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">
+    <text x="30" y="158">SYSTEMS / PRODUCT / EXPERIENCE</text>
+    <text x="790" y="158" text-anchor="end">DESIGNING · BUILDING · ITERATING</text>
+  </g>
+</svg>
