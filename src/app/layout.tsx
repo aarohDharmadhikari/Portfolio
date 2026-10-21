@@ -9,26 +9,21 @@ import "@fontsource/inter/600.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/500.css";
 import "./globals.css";
-import { Background } from "@/components/background";
-import { GridField } from "@/components/grid-field";
-import { CursorSystem } from "@/components/cursor";
 import { Navigation } from "@/components/navigation";
-import { StatusReadout } from "@/components/status-readout";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aarohdharmadhikari.dev"),
   title: {
-    default: "Aaroh Dharmadhikari — Full Stack Developer",
+    default: "Aaroh Dharmadhikari — Developer",
     template: "%s — Aaroh Dharmadhikari",
   },
   description:
-    "Full stack developer building AI-powered systems — from speech recognition to autonomous agents. B.Tech in Artificial Intelligence & Data Science, Vishwakarma University.",
+    "Aaroh Dharmadhikari is an Artificial Intelligence & Data Science student building web applications and applied AI projects.",
   keywords: [
     "Aaroh Dharmadhikari",
-    "Full Stack Developer",
+    "Web Developer",
     "AI Developer",
-    "Machine Learning Engineer",
     "Next.js Developer",
     "Vishwakarma University",
   ],
@@ -36,50 +31,32 @@ export const metadata: Metadata = {
   creator: "Aaroh Dharmadhikari",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    title: "Aaroh Dharmadhikari — Full Stack Developer",
-    description:
-      "Full stack developer building AI-powered systems — from speech recognition to autonomous agents.",
+    locale: "en_IN",
+    title: "Aaroh Dharmadhikari — Developer",
+    description: "Web development and applied AI projects by Aaroh Dharmadhikari.",
     siteName: "Aaroh Dharmadhikari",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Aaroh Dharmadhikari — Full Stack Developer",
-    description:
-      "Full stack developer building AI-powered systems — from speech recognition to autonomous agents.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#06090A",
+  themeColor: "#171719",
   width: "device-width",
   initialScale: 1,
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="relative bg-void text-ink font-body antialiased overflow-x-hidden">
+      <body className="relative overflow-x-hidden bg-void font-body text-ink antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-emerald focus:text-void focus:px-4 focus:py-2 focus:rounded-md focus:font-medium"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-emerald focus:px-4 focus:py-2 focus:font-medium focus:text-void"
         >
           Skip to content
         </a>
-        <Background />
-        <GridField />
-        <CursorSystem />
         <Navigation />
-        <StatusReadout />
-        <main id="main" className="relative z-10">{children}</main>
+        <main id="main" className="relative z-10 min-h-screen">{children}</main>
         <div className="relative z-10">
           <Footer />
         </div>
