@@ -1,6 +1,3 @@
-
-import { RestrictedBoundary } from "@/components/restricted-boundary";
-import { UnderDevelopmentNotice } from "@/components/under-development-notice";
 import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
@@ -14,8 +11,6 @@ import { Contact } from "@/components/sections/contact";
 export default function Home() {
   return (
     <>
-      <RestrictedBoundary />
-      <UnderDevelopmentNotice />
       <Hero />
       <Projects />
       <Skills />
