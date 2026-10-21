@@ -1,4 +1,3 @@
-
 export interface Project {
   slug: string;
   name: string;
@@ -56,8 +55,8 @@ export const projects: Project[] = [
     slug: "speech-to-text-dialect-normalization",
     name: "Speech-to-Text & Dialect Normalization Framework",
     description:
-      "A deep-learning project focused on recognizing spoken Ahirani and normalizing the resulting text into Standard Marathi.",
-    status: "Completed",
+      "A deep-learning project using Whisper to recognize spoken Ahirani. Dialect normalization into Standard Marathi remains in development and is not presented as a completed capability.",
+    status: "In development",
     tags: ["Python", "Whisper", "Speech Recognition", "Marathi NLP"],
     featured: false,
     repoUrl: "https://github.com/aarohDharmadhikari/AhiraniProject",
