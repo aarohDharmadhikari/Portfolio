@@ -13,10 +13,9 @@ export function Skills() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="Capabilities"
-          title="Where engineering meets AI"
-          description="The stack I reach for when moving from a research idea to a shipped product."
+          title="Tools, methods, and practice"
+          description="A snapshot of the technologies and areas represented in my current work."
         />
-
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -24,16 +23,12 @@ export function Skills() {
           variants={staggerContainer}
           className="mt-14 grid gap-6 md:grid-cols-3"
         >
-          {skillGroups.map((group, i) => (
-            <GlassCard key={group.category} delay={i * 0.1} className="p-7">
-              <span className="h-1.5 w-8 rounded-full bg-gradient-to-r from-emerald-deep to-emerald block" />
-              <h3 className="mt-4 font-display text-lg font-medium text-ink">
-                {group.category}
-              </h3>
+          {skillGroups.map((group, index) => (
+            <GlassCard key={group.category} delay={index * 0.08} className="p-7">
+              <span className="block h-1 w-10 bg-gradient-to-r from-emerald to-plum" />
+              <h3 className="mt-5 font-display text-lg font-medium text-ink">{group.category}</h3>
               <div className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <Badge key={item}>{item}</Badge>
-                ))}
+                {group.items.map((item) => <Badge key={item}>{item}</Badge>)}
               </div>
             </GlassCard>
           ))}
