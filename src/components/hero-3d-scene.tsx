@@ -1,146 +1,79 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowDownRight, ArrowUpRight, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { profile } from "@/data/profile";
+import { fadeUp, staggerContainer } from "@/lib/animations";
 
-export function Hero3DScene() {
-  const containerRef = useRef<HTMLDivElement>(null);
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    let disposed = false;
-    let raf = 0;
-    let cleanupListeners: (() => void) | undefined;
-    let renderer: import("three").WebGLRenderer | undefined;
-
-    async function init() {
-      let THREE: typeof import("three");
-      try {
-        THREE = await import("three");
-      } catch {
-        return; // Three.js failed to load — fall back to the flat background silently.
-      }
-      if (disposed || !container) return;
-
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      if (width === 0 || height === 0) return;
-
-      let scene: import("three").Scene;
-      let camera: import("three").PerspectiveCamera;
-
-      try {
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-        camera.position.z = 6;
-
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(width, height);
-        renderer.setClearColor(0x000000, 0);
-        container.appendChild(renderer.domElement);
-      } catch {
-        return; // No WebGL support — bail out cleanly, existing background stays visible.
-      }
-
-      // A pair of nested, offset polyhedra rendered as clean line art only
-      // (no point cloud) — reads as a technical/CAD schematic rather than a
-      // node network, and the second shell gives the piece real depth.
-      const outerGeometry = new THREE.IcosahedronGeometry(2.4, 1);
-      const outer = new THREE.LineSegments(
-        new THREE.WireframeGeometry(outerGeometry),
-        new THREE.LineBasicMaterial({
-          color: 0x2fd18f,
-          transparent: true,
-          opacity: 0.32,
-        })
-      );
-
-      const innerGeometry = new THREE.OctahedronGeometry(1.35, 0);
-      const inner = new THREE.LineSegments(
-        new THREE.WireframeGeometry(innerGeometry),
-        new THREE.LineBasicMaterial({
-          color: 0x5cf2b8,
-          transparent: true,
-          opacity: 0.5,
-        })
-      );
-
-      const group = new THREE.Group();
-      const innerGroup = new THREE.Group();
-      innerGroup.add(inner);
-      group.add(outer, innerGroup);
-      scene.add(group);
-
-      let targetX = 0;
-      let targetY = 0;
-
-      function onMouseMove(e: MouseEvent) {
-        if (!container) return;
-        const rect = container.getBoundingClientRect();
-        targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.7;
-        targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.7;
-      }
-
-      function onResize() {
-        if (!container || !renderer) return;
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        if (w === 0 || h === 0) return;
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h);
-      }
-
-      window.addEventListener("mousemove", onMouseMove);
-      window.addEventListener("resize", onResize);
-      cleanupListeners = () => {
-        window.removeEventListener("mousemove", onMouseMove);
-        window.removeEventListener("resize", onResize);
-      };
-
-      function renderFrame() {
-        if (disposed || !renderer) return;
-        camera.position.x += (targetX - camera.position.x) * 0.04;
-        camera.position.y += (-targetY - camera.position.y) * 0.04;
-        camera.lookAt(0, 0, 0);
-
-        if (!prefersReducedMotion) {
-          group.rotation.y += 0.0022;
-          group.rotation.x += 0.0006;
-          innerGroup.rotation.y -= 0.0045;
-          innerGroup.rotation.x += 0.0018;
-        }
-
-        renderer.render(scene, camera);
-        raf = requestAnimationFrame(renderFrame);
-      }
-      renderFrame();
-    }
-
-    init();
-
-    return () => {
-      disposed = true;
-      cancelAnimationFrame(raf);
-      cleanupListeners?.();
-      if (renderer) {
-        renderer.dispose();
-        renderer.domElement.remove();
-      }
-    };
-  }, []);
+export function Hero() {
+  const [imageFailed, setImageFailed] = useState(false);
 
   return (
-    <div
-      ref={containerRef}
-      aria-hidden="true"
-      className="absolute inset-0 z-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,black_50%,transparent_100%)]"
-    />
+    <section id="hero" className="relative flex min-h-[92svh] items-center overflow-hidden px-6 pb-20 pt-32">
+      <div aria-hidden="true" className="pointer-events-none absolute right-[-8rem] top-[12rem] h-[28rem] w-[28rem] rounded-full bg-plum/10 blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-line-strong to-transparent" />
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+        className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.35fr_.65fr]"
+      >
+        <div>
+          <motion.div custom={0} variants={fadeUp} className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-emerald" />
+            <span className="font-mono text-xs uppercase tracking-[.18em] text-ink-muted">
+              {profile.location} <span className="px-2 text-plum">/</span> {profile.availability}
+            </span>
+          </motion.div>
+
+          <motion.p custom={0.05} variants={fadeUp} className="mt-10 font-mono text-sm text-emerald">
+            Portfolio / 2026
+          </motion.p>
+          <motion.h1 custom={0.1} variants={fadeUp} className="mt-4 max-w-4xl font-display text-display-xl font-medium leading-none tracking-tight text-ink">
+            {profile.firstName}<br />
+            <span className="text-emerald">{profile.name.split(" ").slice(1).join(" ")}</span>
+          </motion.h1>
+          <motion.div custom={0.2} variants={fadeUp} className="mt-7 flex flex-wrap items-center gap-3">
+            <span className="border border-line-strong px-3 py-1.5 text-sm text-ink">{profile.title}</span>
+            <span className="text-sm text-ink-muted">{profile.subtitle}</span>
+          </motion.div>
+          <motion.p custom={0.3} variants={fadeUp} className="mt-7 max-w-2xl text-lg leading-8 text-ink-muted">
+            I build web experiences and applied AI projects, with a focus on clear interfaces, useful tools, and thoughtful engineering.
+          </motion.p>
+          <motion.div custom={0.4} variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
+            <Button onClick={() => scrollToSection("work")}>Explore selected work <ArrowDownRight size={16} /></Button>
+            <Link href="/#about" className="inline-flex items-center gap-2 border-b border-line-strong px-1 py-3 text-sm text-ink transition-colors hover:border-emerald hover:text-emerald">
+              More about me <ArrowUpRight size={15} />
+            </Link>
+          </motion.div>
+        </div>
+
+        <motion.div custom={0.25} variants={fadeUp} className="relative mx-auto w-full max-w-[22rem] lg:mt-10">
+          <div className="absolute -left-4 -top-4 z-10 border border-line-strong bg-void px-3 py-2 font-mono text-[10px] uppercase tracking-[.15em] text-emerald">Developer / Pune</div>
+          <div className="relative aspect-[4/5] overflow-hidden border border-line-strong bg-surface">
+            {imageFailed ? (
+              <div className="flex h-full min-h-64 flex-col items-center justify-center gap-3 text-ink-faint">
+                <User size={34} strokeWidth={1.25} />
+                <span className="font-mono text-[10px] uppercase tracking-[.15em]">Portrait unavailable</span>
+              </div>
+            ) : (
+              <Image src={profile.portraitSrc} alt={profile.name} fill priority sizes="(max-width: 1024px) 70vw, 22rem" className="object-cover" onError={() => setImageFailed(true)} />
+            )}
+          </div>
+          <div className="mt-3 flex items-center justify-between border-t border-line pt-3 font-mono text-[10px] uppercase tracking-[.12em] text-ink-faint">
+            <span>Software / Applied AI</span><span>01 — 04</span>
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
   );
 }
